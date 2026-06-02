@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useState,useRef } from "react";
 
 const steps = [
   {
@@ -33,6 +33,7 @@ const steps = [
 
 export function HowItWorksPharmacy() {
   const ref = useRef(null);
+  const [activeCard, setActiveCard] = useState(0);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
@@ -85,7 +86,7 @@ export function HowItWorksPharmacy() {
           </div>
 
           {/* Mobile Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+          <div className="overflow-x-auto pb-4 pl-6 pr-4 scrollbar-hide snap-x snap-mandatory">
             <div className="flex gap-4" style={{ width: "max-content" }}>
               {steps.map((step, index) => (
                 <motion.div
@@ -93,7 +94,7 @@ export function HowItWorksPharmacy() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-white border border-[#e2e8f0] rounded-xl p-6 shadow-sm w-[280px] flex-shrink-0 snap-start"
+                  className="bg-white border border-[#e2e8f0] rounded-xl p-6 shadow-sm w-[min(85vw,340px)] flex-shrink-0 snap-start"
                 >
                   <span className="block text-5xl font-light text-[#0d9488] mb-4">
                     {step.number}
@@ -108,6 +109,18 @@ export function HowItWorksPharmacy() {
               ))}
             </div>
           </div>
+          {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-4">
+              {steps.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${activeCard === index
+                      ? "w-4 bg-[#0d9488]"
+                      : "w-1.5 bg-[#cbd5e1]"
+                    }`}
+                />
+              ))}
+            </div>
         </div>
 
         {/* CTA */}
