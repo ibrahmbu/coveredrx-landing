@@ -116,17 +116,6 @@ export function WaitlistCta() {
             on any smartphone or desktop.
           </p>
 
-          {/* Founding Member Callout */}
-          <div className="mt-8 bg-[#fffbeb] border-l-4 border-[#f59e0b] rounded-lg p-5">
-            <p className="text-[#0f172a] font-bold mb-1">
-              Founding member offer for pharmacies.
-            </p>
-            <p className="text-[#334155] text-sm leading-relaxed">
-              Pharmacies that join the waitlist now will be offered a founding
-              member rate when CoveredRx moves to a paid plan — locked in for
-              the life of the account.
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>
