@@ -86,7 +86,7 @@ export function HowItWorksPharmacy() {
           </div>
 
           {/* Mobile Horizontal Scroll */}
-          <div className="overflow-x-auto pb-4 pl-6 pr-4 scrollbar-hide snap-x snap-mandatory">
+          <div className="md:hidden overflow-x-auto pb-4 pl-6 pr-4 scrollbar-hide snap-x snap-mandatory">
             <div className="flex gap-4" style={{ width: "max-content" }}>
               {steps.map((step, index) => (
                 <motion.div
@@ -110,7 +110,7 @@ export function HowItWorksPharmacy() {
             </div>
           </div>
           {/* Dot indicators */}
-            <div className="flex justify-center gap-2 mt-4">
+          <div className="md:hidden flex justify-center gap-2 mt-4">
               {steps.map((_, index) => (
                 <div
                   key={index}
