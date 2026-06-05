@@ -71,11 +71,13 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="hidden md:block"
           >
-            <div className="relative aspect-[4/3] bg-[#cbd5e1] rounded-2xl shadow-xl flex items-center justify-center">
-              <p className="text-[#64748b] text-sm text-center px-8">
-                [Photo: Pharmacist at independent pharmacy counter]
-              </p>
-            </div>
+            <div className="relative aspect-[4/3] rounded-2xl shadow-xl overflow-hidden">
+  <img
+    src="/hero-pharmacist.png"
+    alt="Pharmacist reviewing a prescription at an independent NYC pharmacy counter"
+    className="w-full h-full object-cover"
+  />
+</div>
           </motion.div>
         </div>
       </div>
