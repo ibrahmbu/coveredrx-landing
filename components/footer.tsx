@@ -1,17 +1,18 @@
 "use client";
 
+import { useState } from "react";
+import { PolicyModal } from "@/components/ui/PolicyModal";
+
+type PolicyType = "privacy" | "terms" | null;
+
 export function Footer() {
+  const [activePolicy, setActivePolicy] = useState<PolicyType>(null);
+
   const platformLinks = [
     { label: "For Pharmacists", href: "#for-pharmacists" },
     { label: "For Pharmacies", href: "#for-pharmacies" },
     { label: "How It Works", href: "#why-coveredrx" },
     { label: "Join the Waitlist", href: "#waitlist" },
-  ];
-
-  const aboutLinks = [
-    { label: "What CoveredRx Is (and Isn't)", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Use", href: "#" },
   ];
 
   return (
@@ -33,7 +34,7 @@ export function Footer() {
             <ul className="space-y-3">
               {platformLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  
                     href={link.href}
                     className="text-slate-400 text-sm hover:text-white transition-colors"
                   >
@@ -48,16 +49,30 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-4">About</h4>
             <ul className="space-y-3">
-              {aboutLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-slate-400 text-sm hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                
+                  href="#"
+                  className="text-slate-400 text-sm hover:text-white transition-colors"
+                >
+                  What CoveredRx Is (and Isn&apos;t)
+                </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => setActivePolicy("privacy")}
+                  className="text-slate-400 text-sm hover:text-white transition-colors text-left"
+                >
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setActivePolicy("terms")}
+                  className="text-slate-400 text-sm hover:text-white transition-colors text-left"
+                >
+                  Terms of Use
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -76,6 +91,11 @@ export function Footer() {
           </p>
         </div>
       </div>
+
+      <PolicyModal
+        open={activePolicy}
+        onClose={() => setActivePolicy(null)}
+      />
     </footer>
   );
 }
