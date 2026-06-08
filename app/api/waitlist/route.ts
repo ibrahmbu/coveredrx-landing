@@ -52,6 +52,19 @@ export async function POST(req: Request) {
     ),
   ]);
 
+  // --- ADD THIS BLOCK ---
+  for (let i = 0; i < results.length; i++) {
+    const label = i === 0 ? "Airtable" : "Beehiiv";
+    const r = results[i];
+    if (r.status === "rejected") {
+      console.error(`${label} failed:`, r.reason);
+    } else {
+      const body = await r.value.json();
+      console.log(`${label} status:`, r.value.status, JSON.stringify(body));
+    }
+  }
+  // --- END ADDED BLOCK ---
+
   const failed = results.filter((r) => r.status === "rejected");
   if (failed.length === results.length) {
     return NextResponse.json(
