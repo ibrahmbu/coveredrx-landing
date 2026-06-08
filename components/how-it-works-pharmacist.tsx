@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef,useCallback } from "react";
 
 const steps = [
   {
@@ -34,7 +34,16 @@ const steps = [
 export function HowItWorksPharmacist() {
   const ref = useRef(null);
   const [activeCard, setActiveCard] = useState(0);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const scrollRef = useRef<HTMLDivElement>(null);
+const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+const handleScroll = useCallback(() => {
+  const el = scrollRef.current;
+  if (!el) return;
+  const cardWidth = Math.min(el.offsetWidth * 0.85, 340) + 16;
+  const index = Math.min(Math.round(el.scrollLeft / cardWidth), steps.length - 1);
+  setActiveCard(index);
+}, []);
 
   return (
     <section id="for-pharmacists" className="bg-white py-24 md:py-28">
@@ -88,14 +97,11 @@ export function HowItWorksPharmacist() {
 
           {/* Mobile Horizontal Scroll */}
           <div className="md:hidden relative">
-            <div
-              className="overflow-x-auto pb-4 pl-6 pr-4 scrollbar-hide snap-x snap-mandatory"
-              onScroll={(e) => {
-                const el = e.currentTarget;
-                const index = Math.round(el.scrollLeft / 296);
-                setActiveCard(index);
-              }}
-            >
+          <div
+  ref={scrollRef}
+  className="overflow-x-auto pb-4 pl-6 pr-4 scrollbar-hide snap-x snap-mandatory"
+  onScroll={handleScroll}
+>
               <div className="flex gap-4" style={{ width: "max-content" }}>
                 {steps.map((step, index) => (
                   <motion.div
