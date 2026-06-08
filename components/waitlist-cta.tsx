@@ -13,15 +13,19 @@ export function WaitlistCta() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+  
+    const formattedName = firstName.trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    setFirstName(formattedName);
+  
     setStatus("loading");
-
+  
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, email, userType }),
+        body: JSON.stringify({ firstName: formattedName, email, userType }),
       });
-
+  
       if (!res.ok) throw new Error();
       setStatus("success");
     } catch {
