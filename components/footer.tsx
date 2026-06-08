@@ -1,6 +1,8 @@
 "use client";
+import { useState } from "react";
 
 export function Footer() {
+  const [activePolicy, setActivePolicy] = useState<"privacy" | "terms" | null>(null);
   const platformLinks = [
     { label: "For Pharmacists", href: "#for-pharmacists" },
     { label: "For Pharmacies", href: "#for-pharmacies" },
@@ -52,7 +54,7 @@ export function Footer() {
   <li key={link.label}>
     {link.label === "Privacy Policy" || link.label === "Terms of Use" ? (
       <button
-        onClick={() => alert(link.label)}
+      onClick={() => setActivePolicy(link.label === "Privacy Policy" ? "privacy" : "terms")}
         className="text-slate-400 text-sm hover:text-white transition-colors text-left"
       >
         {link.label}
