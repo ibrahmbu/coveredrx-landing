@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const results = await Promise.allSettled([
     // Airtable
     fetch(
-      `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_TABLE_NAME}`,
+      `https://api.airtable.com/v0/app00mRrZeWSy9kO9/Waitlist`,
       {
         method: "POST",
         headers: {
