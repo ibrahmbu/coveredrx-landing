@@ -38,7 +38,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="text-xl font-bold text-[#0f172a]">
-            CoveredRx
+          Covered<span className="text-[#0d9488]">Rx</span>
           </a>
 
           {/* Desktop Navigation */}
