@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { privacyPolicy, termsOfUse } from "@/lib/policy-content";
 
 export function Footer() {
   const [activePolicy, setActivePolicy] = useState<"privacy" | "terms" | null>(null);
@@ -96,7 +97,9 @@ export function Footer() {
         </button>
       </div>
       <div className="overflow-y-auto px-6 py-6">
-        <p className="text-sm text-[#334155]">Content goes here</p>
+      <p className="text-sm text-[#334155] whitespace-pre-wrap">
+  {activePolicy === "privacy" ? privacyPolicy : termsOfUse}
+</p>
       </div>
     </div>
   </div>
