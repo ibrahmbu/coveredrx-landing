@@ -84,6 +84,23 @@ export function Footer() {
           </p>
         </div>
       </div>
+      {activePolicy && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" onClick={() => setActivePolicy(null)}>
+    <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+        <h2 className="text-lg font-semibold text-[#0f172a]">
+          {activePolicy === "privacy" ? "Privacy Policy" : "Terms of Use"}
+        </h2>
+        <button onClick={() => setActivePolicy(null)} className="text-slate-400 hover:text-slate-600 text-2xl leading-none">
+          ×
+        </button>
+      </div>
+      <div className="overflow-y-auto px-6 py-6">
+        <p className="text-sm text-[#334155]">Content goes here</p>
+      </div>
+    </div>
+  </div>
+)}
     </footer>
   );
 }
