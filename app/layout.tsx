@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  openGraph: {
+  title: 'CoveredRx — Pharmacy Shift Coverage in NYC',
+  description: 'Connecting licensed per-diem pharmacists with independent NYC pharmacies that need reliable shift coverage.',
+  images: ['/og-image.png'],
+},
 }
 
 export default function RootLayout({
